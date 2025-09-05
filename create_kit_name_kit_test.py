@@ -58,8 +58,9 @@ def test_kit_name_allows_numbers_returns_201():
 
     # Test_8
 def test_kit_creation_with_empty_body_returns_400():
-    response = sender_stand_request.post_new_client_kit({}, get_new_user_token())
-    assert response.status_code == 400
+    kit_body = data.kit_body.copy()
+    kit_body.pop("name")
+    negative_assert_code_400(kit_body)
 
     # Test_9
 def test_kit_name_as_number_returns_400():
